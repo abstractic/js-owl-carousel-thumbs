@@ -1,0 +1,119 @@
+/**
+ * Owl Carousel (thumbs plugin)
+ * @version 2.0.0
+ * @author Abstractic
+ * @license The MIT License (MIT)
+ */
+
+body, html {
+
+	height: 100%;
+	background-color: #000000;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column wrap;
+	display: flex;
+}
+figure {
+
+	margin: 0;
+}
+
+/* layout style */
+
+.layout {
+
+	width: 800px;
+	height: 584px;
+}
+
+/* carousel style */
+
+.owl-carousel {
+
+	width: 100%;
+	height: 500px;
+	margin: 0;
+}
+.owl-carousel .owl-stage-outer {
+
+	height: inherit;
+}
+.owl-carousel .owl-stage {
+
+	height: inherit;
+}
+.owl-carousel .owl-item {
+
+	height: inherit;
+}
+.owl-carousel .item {
+
+	width: 100%;
+	height: inherit;
+}
+
+/* thumbs style */
+
+.owl-thumbs {
+
+	width: 100%;
+	height: 80px;
+	margin: 2px 0;
+	position: relative;
+	white-space: nowrap;
+	overflow: hidden;
+	line-height: 0;
+	font-size: 0;
+}
+.owl-thumbs .owl-thumbs-wrapper {
+
+	width: auto;
+	height: inherit;
+	transition: left .4s ease-in-out;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.owl-thumbs .owl-thumb-item {
+
+	width: 80px;
+	height: inherit;
+	margin-right: 2px;
+	padding: 0;
+	border: none;
+	background-image: none;
+	background-color: transparent;
+	vertical-align: top;
+	position: relative;
+	text-align: center;
+    cursor: pointer;
+    color: inherit;
+}
+.owl-thumbs .owl-thumb-item img {
+
+	width: 100%;
+	height: 100%;
+	object-position: 50% 50%;
+	object-fit: cover;
+}
+.owl-thumbs .owl-thumb-item.active {
+
+	border: 2px solid #FFFFFF;
+}
+.owl-thumbs .owl-thumb-item.active img {
+
+	opacity: .4;
+}
+
+/* cover style */
+
+.cover {
+
+    width: 100%;
+    max-width: 100%;
+    height: inherit;
+    object-position: 50% 50%;
+    object-fit: cover;
+}
+

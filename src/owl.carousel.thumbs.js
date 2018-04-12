@@ -15,14 +15,12 @@
      */
     var Thumbs = function (carousel) {
 
-
         /**
          * Reference to the core.
          * @protected
          * @type {Owl}
          */
         this.owl = carousel;
-
 
         /**
          * All DOM elements for thumbnails
@@ -31,14 +29,13 @@
          */
         this._thumbcontent = [];
 
-
         /**
-         * Instance identiefier
-         * @type {number}
+         * Instance identiefiers
          * @private
+         * @type {String}
          */
-        this._identifier = 0;
-
+        this._gallery = '';
+        this._thumbnails = '';
 
         /**
          * Return current item regardless of clones
@@ -82,7 +79,7 @@
                 if (e.namespace && this.owl.options.thumbs) {
                     this.render();
                     this.listen();
-                    this._identifier = this.owl.$element.data('slider-id');
+                    this._thumbnails = this.owl.$element.attr('aria-owns');
                     this.setActive();
                     this.position();
                 }
@@ -90,7 +87,7 @@
 
             'changed.owl.carousel': $.proxy(function (e) {
                 if (e.namespace && e.property.name === 'position' && this.owl.options.thumbs) {
-                    this._identifier = this.owl.$element.data('slider-id');
+                    this._thumbnails = this.owl.$element.attr('aria-owns');
                     this.setActive();
                     this.position();
                 }
@@ -112,7 +109,8 @@
     Thumbs.Defaults = {
 
         thumbs: true,
-        thumbImage: false,
+        thumbImage: true,
+        thumbsPrerendered: true,
         thumbContainerClass: 'owl-thumbs',
         thumbWrapperClass: 'owl-thumbs-wrapper',
         thumbItemClass: 'owl-thumb-item',
@@ -141,14 +139,16 @@
         $(this._thumbcontent._thumbwrapper).on('click', this._thumbcontent._thumbwrapper.children(), $.proxy(function (e) {
 
             // find relative slider
-            this._identifier = $(e.target).closest('.' + options.thumbContainerClass).data('slider-id');
+
+            this._gallery = $(e.target).closest('.' + options.thumbContainerClass).attr('aria-controls');
 
             // get index of clicked thumbnail
+
             var index = $(e.target).parent().is(this._thumbcontent._thumbwrapper) ? $(e.target).index() : $(e.target).closest('.'+options.thumbItemClass).index();
 
             if (options.thumbsPrerendered) {
 
-                $('[data-slider-id=' + this._identifier + ']').trigger('to.owl.carousel', [index, options.dotsSpeed, true]);
+                $('#' + this._gallery).trigger('to.owl.carousel', [index, options.dotsSpeed, true]);
             } 
             else {
 
@@ -232,8 +232,8 @@
 
         // set relative thumbnail container
 
-        var thumbContainer = options.thumbsPrerendered ? $('.' + options.thumbContainerClass + '[data-slider-id="' + this._identifier + '"]').find('.' + options.thumbWrapperClass) : this._thumbcontent._thumbwrapper;
-        
+        var thumbContainer = options.thumbsPrerendered ? $('#' + this._thumbnails).find('.' + options.thumbWrapperClass) : this._thumbcontent._thumbwrapper;
+
         thumbContainer.children().filter('.active').removeClass('active');
         thumbContainer.children().eq(this.owl_currentitem).addClass('active');
     };
@@ -295,10 +295,13 @@
      * @public
      */
     Thumbs.prototype.destroy = function () {
+
         var handler, property;
+
         for (handler in this._handlers) {
             this.owl.$element.off(handler, this._handlers[handler]);
         }
+
         for (property in Object.getOwnPropertyNames(this)) {
             typeof this[property] !== 'function' && (this[property] = null);
         }

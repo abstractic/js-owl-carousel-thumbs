@@ -24,13 +24,13 @@ $(document).ready(function() {
 This plugin can generate your thumbnails automatically, but by default this plugin is setup to look for your HTML output as described below. The content doesn't have to be photos as shown here, it could be anything.
 
 ```html
-<div class="owl-carousel" data-slider-id="1">
-	<div>[your image]</div>
-	<div>[your image]</div>
-	<div>[your image]</div>
-	<div>[your image]</div>
-</div>
-<div class="owl-thumbs" data-slider-id="1">
+<figure class="owl-carousel" id="owl-carousel" aria-owns="owl-thumbs" role="group">
+	<figure class="item">[your image]</figure>
+	<figure class="item">[your image]</figure>
+	<figure class="item">[your image]</figure>
+	<figure class="item">[your image]</figure>
+</figure>
+<div class="owl-thumbs" id="owl-thumbs" aria-controls="owl-carousel">
 	<div class="owl-thumbs-wrapper">
 		<button class="owl-thumb-item">[your image thumbnail]</button>
 		<button class="owl-thumb-item">[your image thumbnail]</button>
@@ -44,7 +44,7 @@ This plugin can generate your thumbnails automatically, but by default this plug
 There are a few plugin options that can be used to control the HTML output of your image gallery:
 
 * `thumbs` this option enables the thumbnails on your gallery.
-* `thumbImage` enable this option only if you want this plugin to generate the thumbnails for you. 
+* `thumbImage` enable this option if you want to use image thumbnails for your gallery.
 * `thumbsPrerendered` disable this option only if you want this plugin to generate the thumbnails for you.
 * `thumbContainerClass` this option controls the class name of your thumbnail container.
 * `thumbWrapperClass` this option controls the class name of your thumbnails wrapper.
@@ -61,7 +61,7 @@ $(document).ready(function() {
 	$('.owl-carousel').owlCarousel({
 		
 		thumbs: true,
-		thumbImage: false,
+		thumbImage: true,
 		thumbsPrerendered: true,
 		thumbContainerClass: 'owl-thumbs',
 		thumbWrapperClass: 'owl-thumbs-wrapper',
