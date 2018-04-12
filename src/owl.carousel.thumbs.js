@@ -2,6 +2,7 @@
  * Thumbs Plugin
  * @version 2.0.0
  * @author Abstractic
+ * @credit https://github.com/gijsroge/OwlCarousel2-Thumbs
  * @license The MIT License (MIT)
  */
 (function ($, window, document, undefined) {
