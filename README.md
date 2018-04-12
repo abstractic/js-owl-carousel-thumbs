@@ -30,6 +30,7 @@ This plugin can generate your thumbnails automatically, but by default this plug
 	<figure class="item">[your image]</figure>
 	<figure class="item">[your image]</figure>
 </figure>
+
 <div class="owl-thumbs" id="owl-thumbs" aria-controls="owl-carousel">
 	<div class="owl-thumbs-wrapper">
 		<button class="owl-thumb-item">[your image thumbnail]</button>
